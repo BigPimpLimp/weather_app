@@ -1,0 +1,12 @@
+* {
+    background-color: #1f1f1f;
+    color: white;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+#header, #form {
+    display: flex;
+    justify-content: center;
+}
