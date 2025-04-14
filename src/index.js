@@ -1,5 +1,5 @@
 import './style.css';
-
+import { getDate } from './dom.js';
 console.log('test');
 
 export const getData = async function getData(location) {
@@ -10,23 +10,22 @@ export const getData = async function getData(location) {
   } catch {
     console.log('Did not work');
   } 
-
 }
-
+  
 const form = document.querySelector('#form');
 const input = document.querySelector('#search-bar');
   form.addEventListener('click', (e) => {
     if(e.target.matches('#submit')) {
         getData(input.value)
+          .then(result => {
+            console.log(result)
+            getDate(result.days)
+          })
         input.value = '';
         e.preventDefault();
     }
   })
-  
-getData('Elizabethtown')
-  .then(result => {
-    console.log(result.days[0])
-  });
+
 
 //?key=S8PT6R6SWQ2SNK6EUXGTYJKGD
 
