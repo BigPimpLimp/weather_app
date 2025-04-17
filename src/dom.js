@@ -1,5 +1,28 @@
 import { getData, test } from "./index.js";
 import { formatDistance, subDays } from "date-fns";
+// import clearDay from './svg/clear-day.svg';
+// import partlyCloudy from './svg/cloudy-1-day.svg';
+// import cloudy from './svg/cloudy.svg';
+// import rainy from './svg/rainy-3.svg';
+// import snowy from './svg/snowy-3.svg';
+
+const svgArr = [];
+
+const loadSVG = async function(filePath) {
+    try {
+        let { default:svgString } = await import(`${filePath}`, { with: { type: 'svg'}})
+        
+        return svgString;
+    } catch (error) {
+        console.log('SVGs did not load');
+        return null;
+    }
+}
+
+loadSVG('./svg/cloudy.svg')
+    .then(result => {
+        console.log(result)
+    })
 
 export const updateDom = function updateDom(days) {
     const gridContainer = document.querySelectorAll('.grid-item');
@@ -37,15 +60,15 @@ const determineIcon = function determineIcon(value) {
     console.log(value)
     switch (value) {
         case 'partly-cloudy-day':
-            return '../svg/cloudy-1-day.svg';
+            return partlyCloudy;
         case 'rain':
-            return '../svg/rainy-3.svg'; 
+            return rainy; 
         case 'cloudy':
-            return '../svg/cloudy.svg'; 
+            return cloudy; 
         case 'clear-day':
-            return '../svg/clear-day.svg';  
+            return clearDay;  
         case 'snow':
-            return '../svg/snowy-3.svg';  
+            return snowy;  
         // default:
         //     return 'http://localhost:8080/81f5f6bda5defad4bb66.svg';    
     }
