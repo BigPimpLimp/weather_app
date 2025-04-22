@@ -1,5 +1,5 @@
 import './style.css';
-import { getWeekDay, updateDom } from './dom.js';
+import { updateDom } from './dom.js';
 console.log('test');
 
 export const getData = async function getData(location) {
@@ -9,7 +9,7 @@ export const getData = async function getData(location) {
     console.log(data);
     return data;
   } catch {
-    alert('Not a valid location!');
+    alert('Error fetching data');
     return;
   } 
 }
