@@ -74,7 +74,10 @@ const determineIcon = async function determineIcon(value) {
     }
 }
 
-
+export const updateLocation = function updateLocation(value) {
+    const e = document.getElementById('location');
+    e.innerHTML = `${value}`
+}
 
 // const test3 = determineIcon('partly-cloudy-day');
 // console.log(test3)

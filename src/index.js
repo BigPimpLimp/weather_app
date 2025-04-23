@@ -1,5 +1,6 @@
 import './style.css';
-import { updateDom, unhideGrid } from './dom.js';
+import { updateDom, unhideGrid, updateLocation } from './dom.js';
+import { is } from 'date-fns/locale';
 console.log('test');
 
 export const getData = async function getData(location) {
@@ -16,10 +17,12 @@ export const getData = async function getData(location) {
   
 const form = document.querySelector('#form');
 const input = document.querySelector('#search-bar');
+const checkbox = document.querySelector('#checkbox');
   form.addEventListener('click', (e) => {
     if(e.target.matches('#submit')) {
         getData(input.value)
           .then(result => {
+            updateLocation(result.resolvedAddress)
             updateDom(result.days)
             unhideGrid()
           })
@@ -31,5 +34,20 @@ const input = document.querySelector('#search-bar');
         e.preventDefault();
     }
   })
+  checkbox.addEventListener('click', (e) => {
 
-//?key=S8PT6R6SWQ2SNK6EUXGTYJKGD
+
+  })
+
+const convertDegree = function convertDegree(value) {
+    const isActive = checkbox.checked;
+    const celcius = (5 / 9) * (value - 32);
+    const fahrenheit =  (value * (9 / 5)) + 32;
+
+    if (isActive) {
+      
+    }
+    if (!isActive) {
+
+    }
+}

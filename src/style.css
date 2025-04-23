@@ -186,3 +186,25 @@ form > label {
   .current-temp, .api-value, .advanced-weather-item > span > span, .basic-weather-data > div > p {
     font-size: 1.7rem;
   }
+
+#sub-header {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 3fr 2fr 3fr;
+}
+
+.switch {
+  display: grid;
+  grid-column: 3 / 4;
+  justify-self: center;
+  align-self: center;
+}
+
+#location {
+  display: grid;
+  grid-column: 2 / 3;
+  grid-row: 1 / 1;
+  justify-self: center;
+  align-items: center;
+  font-size: 1.7rem;
+}
