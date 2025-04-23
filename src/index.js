@@ -1,5 +1,5 @@
 import './style.css';
-import { updateDom } from './dom.js';
+import { updateDom, unhideGrid } from './dom.js';
 console.log('test');
 
 export const getData = async function getData(location) {
@@ -21,6 +21,7 @@ const input = document.querySelector('#search-bar');
         getData(input.value)
           .then(result => {
             updateDom(result.days)
+            unhideGrid()
           })
           .catch(error => {
             console.log(error)

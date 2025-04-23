@@ -1,12 +1,17 @@
 import { getData, test } from "./index.js";
 import { formatDistance, subDays } from "date-fns";
 
+
 const icons = {
     'partly-cloudy-day': () => import('./svg/cloudy-1-day.svg'),
     'rain': () => import('./svg/rainy-3.svg'),
     'cloudy': () => import('./svg/cloudy.svg'),
     'clear-day': () => import('./svg/clear-day.svg'),
     'snow': () => import('./svg/snowy-3.svg')
+}
+
+export const unhideGrid = function unhideGrid() {
+    document.getElementById('grid-container').style.visibility = 'visible';
 }
 
 const loadSVG = async function(key) {
