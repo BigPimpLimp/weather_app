@@ -25,6 +25,7 @@ const checkbox = document.querySelector('#checkbox');
             updateLocation(result.resolvedAddress)
             updateDom(result.days)
             unhideGrid()
+            storeItem('temps', result.days)
           })
           .catch(error => {
             console.log(error)
@@ -35,9 +36,13 @@ const checkbox = document.querySelector('#checkbox');
     }
   })
   checkbox.addEventListener('click', (e) => {
-
+    convertDegree();
 
   })
+
+const convertFarenheight = function convert(value) {
+    return (5 / 9) * (value - 32);
+}  
 
 const convertDegree = function convertDegree(value) {
     const isActive = checkbox.checked;
@@ -45,9 +50,28 @@ const convertDegree = function convertDegree(value) {
     const fahrenheit =  (value * (9 / 5)) + 32;
 
     if (isActive) {
-      
+      let newArr = [];
+      const daysArr = retrieveItem('temps')
+      console.log('break')
+      daysArr.forEach(e => {
+          let obj = { 
+            tempmax: convertFarenheight(e.tempmax),
+            tempmin: convertFarenheight(e.tempmin),
+            temp: convertFarenheight(e.temp)
+          }
+          newArr.push(obj)
+      });
+      console.log(newArr)
     }
     if (!isActive) {
 
     }
+}
+
+const storeItem = function storeItem(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
+}
+
+const retrieveItem = function retrieveItem(value) {
+    return JSON.parse(localStorage.getItem(value))
 }
