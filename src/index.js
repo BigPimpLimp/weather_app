@@ -1,5 +1,5 @@
 import './style.css';
-import { updateDom, unhideGrid, updateLocation } from './dom.js';
+import { updateDom, unhideGrid, updateLocation, updateTemp } from './dom.js';
 import { is } from 'date-fns/locale';
 console.log('test');
 
@@ -40,9 +40,15 @@ const checkbox = document.querySelector('#checkbox');
 
   })
 
-const convertFarenheight = function convert(value) {
-    return (5 / 9) * (value - 32);
+const returnCelcius = function convert(value) {
+
+    let x = (5 / 9) * (value - 32);
+    return String(x).slice(0, 4)
 }  
+
+const returnFahrenheit = function convert(value) {
+    return (value * (9 / 5)) + 32;
+}
 
 const convertDegree = function convertDegree(value) {
     const isActive = checkbox.checked;
@@ -51,20 +57,34 @@ const convertDegree = function convertDegree(value) {
 
     if (isActive) {
       let newArr = [];
-      const daysArr = retrieveItem('temps')
+      const arr = retrieveItem('temps')
       console.log('break')
-      daysArr.forEach(e => {
+      arr.forEach(e => {
+        console.log('test')
           let obj = { 
-            tempmax: convertFarenheight(e.tempmax),
-            tempmin: convertFarenheight(e.tempmin),
-            temp: convertFarenheight(e.temp)
+            tempmax: returnCelcius(e.tempmax),
+            tempmin: returnCelcius(e.tempmin),
+            temp: returnCelcius(e.temp)
           }
-          newArr.push(obj)
+          newArr.push(obj);
       });
       console.log(newArr)
+      updateTemp(newArr, 'C')
+      storeItem('celc', newArr)
     }
     if (!isActive) {
-
+      let newArr = []
+      const arr = retrieveItem('temps')
+      arr.forEach(e => {
+        let obj = {
+          tempmax: (e.tempmax),
+          tempmin: (e.tempmin),
+          temp: (e.temp)
+        }
+        newArr.push(obj);
+      })
+      updateTemp(newArr, 'F')
+      console.log(newArr)
     }
 }
 

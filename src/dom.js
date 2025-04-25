@@ -37,17 +37,16 @@ const loadSVG = async function(key) {
 
 export const updateDom = async function updateDom(days) {
     const gridContainer = document.querySelectorAll('.grid-item');
-    const currrentTemp = document.querySelectorAll('.current-temp');
     const gridItem = [...gridContainer];
     
     for (let i = 0; i < gridItem.length; i++) {
         const e = gridItem[i];
 
         e.firstElementChild.children[0].children[0].innerHTML = convertDate(days[i].datetime);
-        e.firstElementChild.children[0].children[1].innerHTML = `${days[i].temp}\u00B0`;
+        e.firstElementChild.children[0].children[1].innerHTML = `${days[i].temp}\u00B0F`;
         e.firstElementChild.children[0].children[2].innerHTML = days[i].conditions;
         e.firstElementChild.children[1].firstElementChild.src = await determineIcon(days[i].icon);
-        e.lastElementChild.children[0].children[1].innerHTML = `${days[i].tempmax}\u00B0 / ${days[i].tempmin}\u00B0`;
+        e.lastElementChild.children[0].children[1].innerHTML = `${days[i].tempmax}\u00B0F / ${days[i].tempmin}\u00B0F`;
         e.lastElementChild.children[1].children[1].innerHTML = `${days[i].precipprob}%`;
         e.lastElementChild.children[2].children[1].innerHTML = `${days[i].humidity}%`;
         e.lastElementChild.children[3].children[1].innerHTML = `${days[i].visibility} mi`
@@ -77,6 +76,19 @@ const determineIcon = async function determineIcon(value) {
 export const updateLocation = function updateLocation(value) {
     const e = document.getElementById('location');
     e.innerHTML = `${value}`
+}
+
+export const updateTemp = function updateTemp(arr, symbol) {
+    const gridContainer = document.querySelectorAll('.grid-item');
+    const gridItem = [...gridContainer];
+
+    for (let i = 0; i < gridItem.length; i++) {
+        const e = gridItem[i];
+
+        e.firstElementChild.children[0].children[1].innerHTML = `${arr[i].temp}\u00B0${symbol}`;
+        e.lastElementChild.children[0].children[1].innerHTML = `${arr[i].tempmax}\u00B0${symbol} / ${arr[i].tempmin}\u00B0${symbol}`;
+
+    }
 }
 
 // const test3 = determineIcon('partly-cloudy-day');
