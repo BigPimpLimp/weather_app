@@ -1,6 +1,5 @@
 import './style.css';
 import { updateDom, unhideGrid, updateLocation, updateTemp } from './dom.js';
-import { is } from 'date-fns/locale';
 console.log('test');
 
 export const getData = async function getData(location) {
@@ -46,14 +45,8 @@ const returnCelcius = function convert(value) {
     return String(x).slice(0, 4)
 }  
 
-const returnFahrenheit = function convert(value) {
-    return (value * (9 / 5)) + 32;
-}
-
 const convertDegree = function convertDegree(value) {
     const isActive = checkbox.checked;
-    const celcius = (5 / 9) * (value - 32);
-    const fahrenheit =  (value * (9 / 5)) + 32;
 
     if (isActive) {
       let newArr = [];

@@ -13,7 +13,7 @@
         <div id="form">
             <span>
               <form novalidate>
-                  <label>
+                  <label id="search-img">
                       <input type="text" id="search-bar" placeholder="Search City or Zip Code">
                   </label>
                   <button id="submit"></button>
@@ -25,13 +25,15 @@
 
         </div>
         <div id="sub-header">
-           <label class="switch">
+           <span id="checkbox-container">
+               <label class="switch">Convert to Celsius</label> 
                <input type="checkbox" id="checkbox">
                <span class="slider round"></span>
-           </label>  
-           <p id="location"></p> 
+           </span>
+           <span id="location-container">
+           <p id="location"></p>
+           </span> 
         </div>
-        
     </header>
 
     

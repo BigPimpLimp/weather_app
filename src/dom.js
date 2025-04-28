@@ -1,7 +1,3 @@
-import { getData, test } from "./index.js";
-import { formatDistance, subDays } from "date-fns";
-
-
 const icons = {
     'partly-cloudy-day': () => import('./svg/cloudy-1-day.svg'),
     'rain': () => import('./svg/rainy-3.svg'),
@@ -23,17 +19,6 @@ const loadSVG = async function(key) {
         return null;
     }
 }
-
-
-// const loadSVG = async function(filePath) {
-//     try {
-//         const module = await import(`${filePath}`, { with: { type: 'svg' } });
-//         return module.default;
-//     } catch (error) {
-//         console.log('SVGs did not load');
-//         return null;
-//     }
-// }
 
 export const updateDom = async function updateDom(days) {
     const gridContainer = document.querySelectorAll('.grid-item');
@@ -90,14 +75,3 @@ export const updateTemp = function updateTemp(arr, symbol) {
 
     }
 }
-
-// const test3 = determineIcon('partly-cloudy-day');
-// console.log(test3)
-
-// import clearDay from './svg/clear-day.svg';
-// import partlyCloudy from './svg/cloudy-1-day.svg';
-// import cloudy from './svg/cloudy.svg';
-// import rainy from './svg/rainy-3.svg';
-// import snowy from './svg/snowy-3.svg';
-
-// http://localhost:8080/81f5f6bda5defad4bb66.svg
